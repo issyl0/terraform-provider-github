@@ -478,7 +478,7 @@ func resourceGithubRepositoryUpdate(d *schema.ResourceData, meta interface{}) er
 		o, n := d.GetChange("visibility")
 		log.Printf("[DEBUG] Old Value %v New Value %v", o, n)
 		if o.(string) == "" {
-			repoReq.Visibility = nil
+			repoReq.Visibility = github.String(n.(string))
 		}
 	} else {
 		// The endpoint will throw an error if trying to PATCH with a visibility value that is the same
